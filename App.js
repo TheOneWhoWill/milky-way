@@ -22,7 +22,7 @@ function App() {
 	return (
 			<NavigationContainer>
 				<Stack.Navigator
-					screenOptions={{headerTitleAlign: 'center'}}
+					screenOptions={{headerShown: false}}
 				>
 					{currentUser ? 
 						<Stack.Screen
