@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "milky-way",
+    "name": "Browse Movies",
     "slug": "milky-way",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.milkyway.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
