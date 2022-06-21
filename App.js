@@ -1,6 +1,7 @@
 import Home from './Pages/Home';
 import Welcome from './Pages/Welcome';
-import { currentUser } from './firebase/functions';
+//import { auth } from './firebase/init';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -19,27 +20,31 @@ let welcomeOptions = {
 }
 
 function App() {
+	const { currentUser } = useAuth();
+
 	return (
-			<NavigationContainer>
+		<>
+			{currentUser ? (
 				<Stack.Navigator
 					screenOptions={{headerShown: false}}
 				>
-					{currentUser ? 
-						<Stack.Screen
-							name="Home"
-							component={Home}
-							options={{title: "Home"}}
-						/>
-						: 
-						<Stack.Screen
-							name="Welcome"
-							component={Welcome}
-							options={welcomeOptions}
-						/>
-					}
+					<Stack.Screen
+						name="Home"
+						component={Home}
+						options={{title: "Home"}}
+					/>
 				</Stack.Navigator>
-			</NavigationContainer>
+			) : (
+				<Stack.Navigator>
+					<Stack.Screen
+						name="Welcome"
+						component={Welcome}
+						options={welcomeOptions}
+					/>
+				</Stack.Navigator>
+			)}
+		</>
 	);
 }
 
-export default App
+export default <NavigationContainer><AuthProvider><App /></AuthProvider></NavigationContainer>

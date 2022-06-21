@@ -1,17 +1,18 @@
 import { useState } from 'react';
-import { loginUser, currentUser } from '../firebase/functions';
+import { useAuth } from '../contexts/AuthContext';
 import { StyleSheet, View, FlatList, Text, TextInput, TouchableOpacity } from 'react-native';
 
 function Welcome({ navigation }) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const { login, currentUser } = useAuth();
 
 	if(currentUser) {
 		navigation.navigate('Home')
 	}
 
 	function handleLogin() {
-		loginUser(username, password)
+		login(username, password)
 			.catch(() => {
 				alert("Failed to Log in. Please check your email or password.")
 			})
