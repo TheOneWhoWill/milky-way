@@ -1,12 +1,20 @@
 import { useState } from 'react';
+import { loginUser, currentUser } from '../firebase/functions';
 import { StyleSheet, View, FlatList, Text, TextInput, TouchableOpacity } from 'react-native';
 
-function Welcome() {
+function Welcome({ navigation }) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
+	if(currentUser) {
+		navigation.navigate('Home')
+	}
+
 	function handleLogin() {
-		alert(`${username}, Password: ${password}`)
+		loginUser(username, password)
+			.catch(() => {
+				alert("Failed to Log in. Please check your email or password.")
+			})
 	}
 
 	return (

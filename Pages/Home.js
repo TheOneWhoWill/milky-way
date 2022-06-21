@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { logOut } from '../firebase/functions';
+import { StyleSheet, View, FlatList, Button } from 'react-native';
 
 function Home({ navigation }) {
 
 	return (
 		<View style={styles.container}>
+			<Button title="LogOut" onPress={logOut} />
 		</View>
 	);
 }
